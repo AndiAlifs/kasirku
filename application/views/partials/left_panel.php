@@ -34,15 +34,17 @@
                     <a href="<?=site_url('/transaksi')?>"> <i class="menu-icon fa fa-desktop"></i>Kasir</a>
                 </li>
 
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Laporan</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_penjualan')?>">Laporan Penjualan</a></li>
-                        <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_pembelian')?>">Laporan Pembelian</a></li>
-                        <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_stok')?>">Laporan Stok Barang</a></li>
-                        <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_keuangan')?>">Laporan Keuangan</a></li>
-                    </ul>
-                </li>
+                <?php if($this->session->role == "owner"):?>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Laporan</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_penjualan')?>">Laporan Penjualan</a></li>
+                            <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_pembelian')?>">Laporan Pembelian</a></li>
+                            <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_stok')?>">Laporan Stok Barang</a></li>
+                            <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_keuangan')?>">Laporan Keuangan</a></li>
+                        </ul>
+                    </li>
+                <?php endif;?>
 
                 <li>
                     <a href="<?php echo site_url(); ?>user"> <i class="menu-icon fa fa-user"></i>User</a>

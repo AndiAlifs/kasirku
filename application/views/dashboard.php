@@ -54,57 +54,68 @@
         </div>
 
         <div class="content mt-3">
+            <?php if($this->session->flashdata('msg')):?>
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <?= $this->session->flashdata('msg')?>
+            </div>
+            <?php endif;?>
+            
+            <div class="row">
+                <div class="col-sm-6 col-lg-4">
 
-            <div class="col-sm-6 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-one">
-                            <div class="stat-icon dib"><i class="ti-shopping-cart-full text-primary border-primary"></i></div>
-                            <div class="stat-content dib">
-                                <div class="stat-text">Transaksi Hari Ini</div>
-                                <div class="stat-digit"><?= $transaksi_hari_ini ?></div>
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="stat-widget-one">
+                                <div class="stat-icon dib"><i class="ti-shopping-cart-full text-primary border-primary"></i></div>
+                                <div class="stat-content dib">
+                                    <div class="stat-text">Transaksi Hari Ini</div>
+                                    <div class="stat-digit"><?= $transaksi_hari_ini ?></div>
+                                </div>
                             </div>
                         </div>
+                        <div class="card-footer text-center">
+                            <a href="<?= site_url('transaksi/laporan_penjualan') ?>">More Information</a>
+                        </div>
                     </div>
-                    <div class="card-footer text-center">
-                        <a href="<?= site_url('transaksi/laporan_penjualan') ?>">More Information</a>
+                </div>
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-one">
+                                <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
+                                <div class="stat-content dib">
+                                    <div class="stat-text">Total Pemasukan Hari Ini</div>
+                                    <div class="stat-digit">Rp. <?= number_format($income_hari_ini, 0, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="<?= site_url('transaksi') ?>">More Information</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-one">
+                                <div class="stat-icon dib"><i class="ti-package text-danger border-danger"></i></div>
+                                <div class="stat-content dib">
+                                    <div class="stat-text">Stok Masuk Hari Ini</div>
+                                    <div class="stat-digit"><?= $stok_hari_ini ?></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="<?= site_url('barang/stok_masuk') ?>">More Information</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-one">
-                            <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
-                            <div class="stat-content dib">
-                                <div class="stat-text">Total Pemasukan Hari Ini</div>
-                                <div class="stat-digit">Rp. <?= number_format($income_hari_ini, 0, ',', '.') ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="<?= site_url('transaksi') ?>">More Information</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-one">
-                            <div class="stat-icon dib"><i class="ti-package text-danger border-danger"></i></div>
-                            <div class="stat-content dib">
-                                <div class="stat-text">Stok Masuk Hari Ini</div>
-                                <div class="stat-digit"><?= $stok_hari_ini ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="<?= site_url('barang/stok_masuk') ?>">More Information</a>
-                    </div>
-                </div>
-            </div>
 
 
         </div> <!-- .content -->

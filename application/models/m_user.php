@@ -11,7 +11,7 @@ class M_user extends CI_Model
 
 	function user($username)
 	{
-		$hasil = $this->db->query("SELECT * FROM user where username = '$username'")->row();
+		$hasil = $this->db->query("SELECT * FROM pegawai where username = '$username'")->row();
 		return $hasil;
 	}
 
@@ -19,12 +19,12 @@ class M_user extends CI_Model
     {
         $this->db->select('image');
 
-        return $this->db->get_where('user', ['id_user' => $user_id])->row();
+        return $this->db->get_where('pegawai', ['id_user' => $user_id])->row();
     }
 
 	public function update_photo($user_id, $photo)
     {
-        $this->db->update('user', ['image' => $photo], ['id_user' => $user_id]);
+        $this->db->update('pegawai', ['image' => $photo], ['id_user' => $user_id]);
     }
 
 }

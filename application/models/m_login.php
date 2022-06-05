@@ -5,7 +5,7 @@ class M_login extends CI_Model {
 
     public function get_login($user)
     {
-        $query = $this->db->get_where('user',[
+        $query = $this->db->get_where('pegawai',[
             'username' => $user
         ]);
         return $query->result();

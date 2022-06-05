@@ -32,6 +32,10 @@ $this->load->view('partials/head', $data);
         </div>
 
         <div class="content mt-3">
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <?= $this->session->flashdata('msg') ?>
+            </div>
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-md-12">
@@ -95,9 +99,9 @@ $this->load->view('partials/head', $data);
                         <div class="form-group">
                             <label for="kodebarang" class="col-form-label">Nama Barang : </label>
                             <select class="form-control" name="kodebarang" id="kodebarang">
-                                <?php foreach ($barang as $value):?>
-                                    <option value="<?=$value->kodebarang?>"><?=$value->kodebarang?> - <?=$value->namabarang?></option>
-                                <?php endforeach;?>
+                                <?php foreach ($barang as $value) : ?>
+                                    <option value="<?= $value->kodebarang ?>"><?= $value->kodebarang ?> - <?= $value->namabarang ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -107,9 +111,9 @@ $this->load->view('partials/head', $data);
                         <div class="form-group">
                             <label for="kodesupplier" class="col-form-label">Supplier : </label>
                             <select class="form-control" name="kodesupplier" id="kodesupplier">
-                                <?php foreach ($supplier as $value):?>
-                                    <option value="<?=$value->kode_supplier?>"><?=$value->kode_supplier?> - <?=$value->nama_supplier?></option>
-                                <?php endforeach;?>
+                                <?php foreach ($supplier as $value) : ?>
+                                    <option value="<?= $value->kode_supplier ?>"><?= $value->kode_supplier ?> - <?= $value->nama_supplier ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>

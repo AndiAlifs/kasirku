@@ -59,6 +59,7 @@ class Barang extends CI_Controller
             'kodebarang' => $kodebarang,
             'jumlah_masuk' => $jumlah_masuk,
             'kodesupplier' => $kodesupplier,
+            'id_user' => $this->session->id_user
         );
 
         $barang = $this->m_barang->get_data($kodebarang);

@@ -54,6 +54,7 @@ class Transaksi extends CI_Controller
             'total_bayar' => $total_bayar,
             'diskon' => $diskon,
             'nota' => $nota,
+            'id_user' => $this->session->id_user
         ];
 
         $allKode = explode(',', $kodebarang);

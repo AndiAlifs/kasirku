@@ -20,7 +20,7 @@ class Login extends CI_Controller {
             if ($data[0]->password == $pass) {
                 $this->session->set_userdata('username',$data[0]->username);
                 $this->session->set_userdata('password',$data[0]->password);
-                $this->session->set_userdata('id',$data[0]->id_user);
+                $this->session->set_userdata('id_user',$data[0]->id_user);
                 $this->session->set_userdata('role',$data[0]->role);
                 $this->session->set_flashdata('msg',strtoupper("anda login sebagai ".$data[0]->role."!"));
                 redirect('/dashboard');

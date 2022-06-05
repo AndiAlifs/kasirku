@@ -67,13 +67,13 @@ class Transaksi extends CI_Controller
     }
 
     function invoice()
-    {   
+    {
         $data["transaksi"] = $this->m_transaksi->transaksi_detail($this->input->get('kode'));
         $data['kode'] = explode(',', $data["transaksi"]->kodebarang);
         $data['quantity'] = explode(',', $data["transaksi"]->quantity);
 
         $dompdf = new Dompdf();
-        $dompdf->loadHtml($this->load->view('invoice',$data, TRUE));
+        $dompdf->loadHtml($this->load->view('invoice', $data, TRUE));
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         $dompdf->stream('Invoice Pembayaran');
@@ -243,19 +243,37 @@ class Transaksi extends CI_Controller
     {
         $data["date"] = [];
         $data["income"] = [];
-        for ($i=12; $i >= -1; $i--) { 
-            $day = $i.' days ago';
-            $date = new DateTime($day);
-            $date = $date->format('Y-m-d');
-            array_push($data["date"],$date);
-            $income = $this->m_transaksi->totalIncome_bydate($date);
-            if ($income == null) {
-                $income = 0;
+        if ($this->input->get('dari') && $this->input->get('sampai')) {
+            $period = new DatePeriod(
+                new DateTime($this->input->get('dari')),
+                new DateInterval('P1D'),
+                new DateTime($this->input->get('sampai'))
+            );
+            foreach ($period as $key => $value) {
+                $date = $value->format('Y-m-d');
+                array_push($data["date"], $date);
+                $income = $this->m_transaksi->totalIncome_bydate($date);
+                if ($income == null) {
+                    $income = 0;
+                }
+                array_push($data["income"], $income);
             }
-            array_push($data["income"],$income);
+            
+        } else {
+            for ($i = 12; $i >= 0; $i--) {
+                $day = $i . ' days ago';
+                $date = new DateTime($day);
+                $date = $date->format('Y-m-d');
+                array_push($data["date"], $date);
+                $income = $this->m_transaksi->totalIncome_bydate($date);
+                if ($income == null) {
+                    $income = 0;
+                }
+                array_push($data["income"], $income);
+            }
         }
         $data["date"] = json_encode($data["date"]);
         $data["income"] = json_encode($data["income"]);
-        $this->load->view('laporan_keuangan',$data);
+        $this->load->view('laporan_keuangan', $data);
     }
 }

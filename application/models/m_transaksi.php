@@ -41,19 +41,19 @@ class M_transaksi extends CI_Model {
         return $this->db->order_by('tanggal','desc')->get('transaksi_penjualan')->result();
     }
 
-    function laporan_stok_jual()
-    {   
-        $transaksi = $this->db->get('penjualan')->result();
-        return $transaksi;
-    }
+    // function laporan_stok_jual()
+    // {   
+    //     $transaksi = $this->db->get('penjualan')->result();
+    //     return $transaksi;
+    // }
 
-    function laporan_stok_jual_by_date($dari, $sampai)
-    {   
-        $this->db->where('tanggal_transaksi >=', $dari.' 00:00:00');
-        $this->db->where('tanggal_transaksi <=', $sampai.' 23:59:59');
-        $transaksi = $this->db->get('penjualan')->result();
-        return $transaksi;
-    }
+    // function laporan_stok_jual_by_date($dari, $sampai)
+    // {   
+    //     $this->db->where('tanggal_transaksi >=', $dari.' 00:00:00');
+    //     $this->db->where('tanggal_transaksi <=', $sampai.' 23:59:59');
+    //     $transaksi = $this->db->get('penjualan')->result();
+    //     return $transaksi;
+    // }
 
     function laporan_pembelian()
     {   

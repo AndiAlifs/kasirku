@@ -40,7 +40,7 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_penjualan')?>">Laporan Penjualan</a></li>
                             <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_pembelian')?>">Laporan Pembelian</a></li>
-                            <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_stok')?>">Laporan Stok Barang</a></li>
+                            <!-- <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_stok')?>">Laporan Stok Barang</a></li> -->
                             <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_keuangan')?>">Laporan Keuangan</a></li>
                         </ul>
                     </li>

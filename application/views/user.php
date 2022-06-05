@@ -40,7 +40,7 @@ $this->load->view('partials/head', $data);
                                 <?=form_open_multipart('user/update')?>
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <img src="<?= base_url('uploads/'.$this->m_user->get_photo($this->session->id)->image) ?>" alt="">
+                                            <img src="<?= base_url('uploads/'.$this->m_user->get_photo($this->session->id_user)->image) ?>" alt="">
                                             <input type="text" name="user_id" id="user_id" value="<?=$user->id_user?>" hidden>
                                             <div>
                                                 <input class="form-control" type="file" id="image" name="image">

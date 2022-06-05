@@ -36,6 +36,28 @@ $this->load->view('partials/head', $data);
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
+                            <div class="card-header">
+                                <form action="" method="get">
+                                    <div class="row">
+                                        <div class="col-5 input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Dari</div>
+                                            </div>
+                                            <input type="date" class="form-control" name="dari" id="dari">
+                                        </div>
+                                        <div class="col-5 input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Sampai</div>
+                                            </div>
+                                            <input type="date" class="form-control" name="sampai" id="sampai">
+                                        </div>
+                                        <div class="col-2 input-group">
+                                            <button type="submit" class="form-control btn btn-primary btn-block">Filter</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
                             <div class="card-body">
                                 <canvas id="myChart" width="400" height="150"></canvas>
                             </div>

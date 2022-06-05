@@ -102,13 +102,5 @@ class M_barang extends CI_Model
 			'stok' => $barang->stok - $qty,
 		];
 		$this->update($dataBarang);
-		$data = [
-			'tanggal_transaksi' => $tanggal,
-			'kodebarang' => $kodebarang,
-			'jumlah_keluar' => $qty,
-			'kodenota' => $nota
-		];
-		
-		$this->db->insert('barangterjual',$data);
 	}
 }

@@ -31,12 +31,18 @@ $this->load->view('partials/head', $data);
         </div>
 
         <div class="content mt-3">
+            <?php if ($this->session->flashdata('msg')) : ?>
+                <div class="alert alert-<?= $this->session->flashdata('kind') ?> alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?= $this->session->flashdata('msg') ?>
+                </div>
+            <?php endif; ?>
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalTambah">Tambah Data</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">Tambah Data</button>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -100,7 +106,8 @@ $this->load->view('partials/head', $data);
                         <div class="form-group">
                             <label for="hargajual" class="col-form-label">Harga Jual : </label>
                             <input type="text" class="form-control" name="hargajual" id="hargajual">
-                        </div><div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="stok" class="col-form-label">Stok : </label>
                             <input type="text" class="form-control" name="stok" id="stok">
                         </div>

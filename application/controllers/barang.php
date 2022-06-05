@@ -28,6 +28,7 @@ class Barang extends CI_Controller
     public function edit()
     {
         $data['barang'] = $this->m_barang->get_data($this->input->get('kode'));
+
         $this->load->view('edit_barang', $data);
     }
 
@@ -72,6 +73,11 @@ class Barang extends CI_Controller
         $this->m_barang->update($dataBarang);
 
         $this->m_barang->input_stok($data);
+
+		$this->session->set_flashdata('msg',strtoupper("data berhasil ditambahkan"));
+		$this->session->set_flashdata('kind',"success");
+
+
         redirect('barang/stok_masuk');
     }
 
@@ -91,12 +97,21 @@ class Barang extends CI_Controller
             'stok' => $stok
         );
         $this->m_barang->input_barang($data);
+
+		$this->session->set_flashdata('msg',strtoupper("data berhasil ditambahkan"));
+		$this->session->set_flashdata('kind',"success");
+
+
         redirect('barang');
     }
 
     public function hapus()
     {
         $this->m_barang->hapusData($this->input->get('kode'));
+        
+        $this->session->set_flashdata('msg',strtoupper("data berhasil dihapus"));
+		$this->session->set_flashdata('kind',"danger");
+
         redirect('barang');
     }
 
@@ -116,6 +131,10 @@ class Barang extends CI_Controller
             'stok' => $stok
         );
         $this->m_barang->update($data);
+
+        $this->session->set_flashdata('msg',strtoupper("data berhasil diedit"));
+		$this->session->set_flashdata('kind',"warning");
+
         redirect('barang');
     }
 

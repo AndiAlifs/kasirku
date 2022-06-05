@@ -32,10 +32,12 @@ $this->load->view('partials/head', $data);
         </div>
 
         <div class="content mt-3">
-            <div class="alert alert-success alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <?= $this->session->flashdata('msg') ?>
-            </div>
+            <?php if ($this->session->flashdata('msg')) : ?>
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?= $this->session->flashdata('msg') ?>
+                </div>
+            <?php endif; ?>
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-md-12">

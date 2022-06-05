@@ -17,6 +17,10 @@ class Supplier extends CI_Controller {
 
     public function hapus(){
         $this->m_supplier->hapusData($this->input->get('kode'));
+
+		$this->session->set_flashdata('msg',strtoupper("data berhasil dihapus"));
+		$this->session->set_flashdata('kind',"danger");
+
         redirect('supplier');  
     }
 
@@ -39,6 +43,9 @@ class Supplier extends CI_Controller {
 		);
 
 		$this->m_supplier->input_data($data);
+		$this->session->set_flashdata('msg',strtoupper("data berhasil ditambahkan"));
+		$this->session->set_flashdata('kind',"success");
+
 		redirect('supplier');
 	}
 
@@ -56,6 +63,10 @@ class Supplier extends CI_Controller {
 		);
 
 		$this->m_supplier->update($data);
+
+		$this->session->set_flashdata('msg',strtoupper("data berhasil diedit"));
+		$this->session->set_flashdata('kind',"warning");
+
 		redirect('supplier');	
 	}
 

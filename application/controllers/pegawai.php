@@ -5,7 +5,7 @@ class Pegawai extends CI_Controller
 {
 
     public function index(){
-        $data['user'] = $this->M_user->tampil_data();  
+        $data['user'] = $this->m_user->tampil_data();  
         $this->load->view('pegawai',$data);
         
     } 
@@ -14,7 +14,7 @@ class Pegawai extends CI_Controller
     {
         parent::__construct();
         $this->model_squrity->get_squrity();
-        $this->load->model('M_user');
+        $this->load->model('m_user');
         $this->load->helper('url');
     }
 

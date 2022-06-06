@@ -129,7 +129,7 @@ $this->load->view('partials/head', $data);
     <div class="modal fade" id="modalEditProfil<?= $value->id_user?>">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <?php echo form_open_multipart('user/edit_proses'); ?>
+                <?php echo form_open_multipart('user/update'); ?>
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Edit User</h4>

@@ -7,6 +7,7 @@ class User extends CI_Controller
     public function index()
     {
         $this->model_squrity->get_squrity();
+		$this->load->model('m_user');
         $data['user'] = $this->m_user->user($this->session->username);
         $this->load->view('user', $data);
     }
@@ -21,7 +22,7 @@ class User extends CI_Controller
 
     function update()
     {
-        $user_id = $this->input->post('user_id');
+        $user_id = $this->input->post('id_user');
 
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'gif|jpg|png';
@@ -48,12 +49,11 @@ class User extends CI_Controller
 
         // get file name from uploaded data
         $photo = $this->upload->data()['file_name'];
-        var_dump($this->upload->do_upload('image'));
 
         // save uploaded file name to database for current user
         $this->m_user->update_photo($user_id, $photo);
 
-        return redirect('user');
+        return redirect('pegawai');
     }
 
     function tambah_proses(){
@@ -61,8 +61,8 @@ class User extends CI_Controller
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$nama = $this->input->post('nama');
-		$dataname['file']='';
-		$filename = $_FILES['file']['name'];
+		$dataname['image']='';
+		$filename = $_FILES['image']['name'];
 		// var_dump($file);die;
 
 		$config['upload_path']		= './uploads/';
@@ -71,13 +71,13 @@ class User extends CI_Controller
 		$this->load->library('upload', $config);
 		// $this->upload->initialize($config); digunakan jika autoload upload aktif, cek modul autoload.php
 
-		if (! $this->upload->do_upload('file')) 
+		$file = $this->upload->data('image');
+		if (!$file) 
 		{
 			echo 'Gambar gagal di upload !';
 			echo $this->upload->display_errors();
 			// die;
 		} else{
-			$file = $this->upload->data('file');
 			$dataname['file'] = $file;
 			// var_dump($filename);die;
 		}
@@ -88,7 +88,7 @@ class User extends CI_Controller
 			'username' => $username,
 			'password' => $password,
 			'nama' => $nama,
-			'file' => $filename
+			'image' => $filename
 		);
 
 		$this->m_user->input_data($data);
@@ -104,42 +104,4 @@ class User extends CI_Controller
         $data['pegawai'] = $this->m_user->get_data($this->input->get('id'));
         $this->load->view('pegawai', $data);
     }
-
-	function edit_proses(){
-        $id_user = $this->input->post('id_user'); 
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$nama = $this->input->post('nama');
-		$dataname['file']='';
-		$filename = $_FILES['file']['name'];
-		// var_dump($file);die;
-
-		$config['upload_path']		= './uploads/';
-		$config['allowed_types']	= 'jpg|png|gif|jpeg';
-
-		$this->load->library('upload', $config);
-		// $this->upload->initialize($config); digunakan jika autoload upload aktif, cek modul autoload.php
-
-		if (! $this->upload->do_upload('file')) 
-		{
-			echo 'Gambar gagal di upload !';
-			echo $this->upload->display_errors();
-			// die;
-		} else{
-			$file = $this->upload->data('file');
-			$dataname['file'] = $file;
-			// var_dump($filename);die;
-		}
- 
-		$data = array(
-            'id_user' => $id_user,
-			'username' => $username,
-			'password' => $password,
-			'nama' => $nama,
-			'file' => $filename
-		);
-
-		$this->m_user->update($data);
-		redirect('pegawai');	
-	}
 }

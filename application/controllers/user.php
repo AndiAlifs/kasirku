@@ -55,4 +55,91 @@ class User extends CI_Controller
 
         return redirect('user');
     }
+
+    function tambah_proses(){
+        $id_user = $this->input->post('id_user'); 
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$nama = $this->input->post('nama');
+		$dataname['file']='';
+		$filename = $_FILES['file']['name'];
+		// var_dump($file);die;
+
+		$config['upload_path']		= './uploads/';
+		$config['allowed_types']	= 'jpg|png|gif|jpeg';
+
+		$this->load->library('upload', $config);
+		// $this->upload->initialize($config); digunakan jika autoload upload aktif, cek modul autoload.php
+
+		if (! $this->upload->do_upload('file')) 
+		{
+			echo 'Gambar gagal di upload !';
+			echo $this->upload->display_errors();
+			// die;
+		} else{
+			$file = $this->upload->data('file');
+			$dataname['file'] = $file;
+			// var_dump($filename);die;
+		}
+ 
+ 
+		$data = array(
+            'id_user' => $id_user,
+			'username' => $username,
+			'password' => $password,
+			'nama' => $nama,
+			'file' => $filename
+		);
+
+		$this->m_user->input_data($data);
+		redirect('pegawai');
+	}
+
+	public function hapus(){
+        $this->m_user->hapusData($this->input->get('id'));
+        redirect('pegawai');  
+    }
+
+	public function edit(){
+        $data['pegawai'] = $this->m_user->get_data($this->input->get('id'));
+        $this->load->view('pegawai', $data);
+    }
+
+	function edit_proses(){
+        $id_user = $this->input->post('id_user'); 
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$nama = $this->input->post('nama');
+		$dataname['file']='';
+		$filename = $_FILES['file']['name'];
+		// var_dump($file);die;
+
+		$config['upload_path']		= './uploads/';
+		$config['allowed_types']	= 'jpg|png|gif|jpeg';
+
+		$this->load->library('upload', $config);
+		// $this->upload->initialize($config); digunakan jika autoload upload aktif, cek modul autoload.php
+
+		if (! $this->upload->do_upload('file')) 
+		{
+			echo 'Gambar gagal di upload !';
+			echo $this->upload->display_errors();
+			// die;
+		} else{
+			$file = $this->upload->data('file');
+			$dataname['file'] = $file;
+			// var_dump($filename);die;
+		}
+ 
+		$data = array(
+            'id_user' => $id_user,
+			'username' => $username,
+			'password' => $password,
+			'nama' => $nama,
+			'file' => $filename
+		);
+
+		$this->m_user->update($data);
+		redirect('pegawai');	
+	}
 }

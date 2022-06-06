@@ -44,11 +44,11 @@
                             <li><i class="fa fa-file-text"></i><a href="<?=site_url('transaksi/laporan_keuangan')?>">Laporan Keuangan</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="<?php echo site_url(); ?>pegawai"> <i class="menu-icon fa fa-user"></i>Pegawai</a>
+                    </li>
                 <?php endif;?>
 
-                <li>
-                    <a href="<?php echo site_url(); ?>user"> <i class="menu-icon fa fa-user"></i>User</a>
-                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

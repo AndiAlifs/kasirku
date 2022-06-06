@@ -27,4 +27,36 @@ class M_user extends CI_Model
         $this->db->update('pegawai', ['image' => $photo], ['id_user' => $user_id]);
     }
 
+	function kelolauser(){
+		$this->db->select('*');
+		$this->db->from('pegawai');
+		return $this->db->get()->num_rows();
+	}
+
+	function tampil_data()
+    {
+		return $this->db->get('pegawai')->result();
+	}
+
+	function input_data($data)
+    {
+        $this->db->insert('pegawai',$data);
+    }
+
+	public function hapusData($id_user){
+		$this->db->where('id_user',$id_user);
+        $this->db->delete('pegawai');
+    }
+
+	public function get_data($id_user){
+		$this->db->where('id_user',$id_user);
+        return $this->db->get('pegawai')->row();
+    }
+
+	public function update($data){
+        $this->db->where('id_user', $data['id_user']);
+        $this->db->update('pegawai', $data);
+    }
+
+
 }

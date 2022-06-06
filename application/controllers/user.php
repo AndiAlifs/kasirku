@@ -52,6 +52,9 @@ class User extends CI_Controller
 
         // save uploaded file name to database for current user
         $this->m_user->update_photo($user_id, $photo);
+        
+        $this->session->set_flashdata('msg',strtoupper("data berhasil diedit"));
+		$this->session->set_flashdata('kind',"warning");
 
         return redirect('pegawai');
     }
@@ -76,7 +79,7 @@ class User extends CI_Controller
 		$this->upload->initialize($config);
 
 		 // "photo" is the name of input element in uploading form
-		 if (!$this->upload->do_upload('image')) {
+        if (!$this->upload->do_upload('image')) {
             // save uploading errors to show them on the page
             $this->upload_errors = $this->upload->display_errors();
             var_dump($this->upload_errors);
@@ -92,11 +95,19 @@ class User extends CI_Controller
 		);
 
 		$this->m_user->input_data($data);
+
+        $this->session->set_flashdata('msg',strtoupper("data berhasil ditambahkan"));
+		$this->session->set_flashdata('kind',"success");
+
 		redirect('pegawai');
 	}
 
 	public function hapus(){
         $this->m_user->hapusData($this->input->get('id'));
+
+        $this->session->set_flashdata('msg',strtoupper("data berhasil dihapus"));
+		$this->session->set_flashdata('kind',"danger");
+
         redirect('pegawai');  
     }
 

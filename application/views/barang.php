@@ -37,6 +37,7 @@ $this->load->view('partials/head', $data);
                     <?= $this->session->flashdata('msg') ?>
                 </div>
             <?php endif; ?>
+            
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-md-12">

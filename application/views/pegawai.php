@@ -32,6 +32,13 @@ $this->load->view('partials/head', $data);
         </div>
 
         <div class="content mt-3">
+            <?php if ($this->session->flashdata('msg')) : ?>
+                <div class="alert alert-<?= $this->session->flashdata('kind') ?> alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?= $this->session->flashdata('msg') ?>
+                </div>
+            <?php endif; ?>
+
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-md-12">
@@ -56,12 +63,12 @@ $this->load->view('partials/head', $data);
                                             <tr>
                                                 <td><?= $value->id_user ?></td>
                                                 <td><?= $value->nama ?></td>
-                                                <td><?= $value->username?></td>
+                                                <td><?= $value->username ?></td>
                                                 <td><?= $value->password ?></td>
-                                                <td><img src="<?= base_url().'uploads/'.$value->image; ?>" width="100" height="120"></td>
+                                                <td><img src="<?= base_url() . 'uploads/' . $value->image; ?>" width="100" height="120"></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEditProfil<?= $value->id_user?>">Edit</button>
-                                                    <a href="<?=site_url().'/user/hapus?id='.$value->id_user?>" class="btn btn-danger">Hapus</a>
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEditProfil<?= $value->id_user ?>">Edit</button>
+                                                    <a href="<?= site_url() . '/user/hapus?id=' . $value->id_user ?>" class="btn btn-danger">Hapus</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -80,45 +87,45 @@ $this->load->view('partials/head', $data);
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <?php echo form_open_multipart('user/tambah_proses'); ?>
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Tambah User</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Tambah User</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="id_user" class="col-form-label">NIP: </label>
+                        <input type="text" class="form-control" name="id_user" id="id_user">
                     </div>
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="id_user" class="col-form-label">NIP: </label>
-                            <input type="text" class="form-control" name="id_user" id="id_user">
-                        </div>
-                        <div class="form-group">
-                            <label for="nama" class="col-form-label">Nama : </label>
-                            <input type="text" class="form-control" name="nama" id="nama">
-                        </div>
-                        <div class="form-group">
-                            <label for="username" class="col-form-label">Username : </label>
-                            <input type="text" class="form-control" name="username" id="username">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="col-form-label">Password : </label>
-                            <input type="password" class="form-control" name="password" id="password">
-                        </div>
-                        <div class="form-group">
-    						<label for="file" class="col-form-label">Foto</label>
-    						<br/><span class="text-danger">Format: jpg/jpeg/png</span>    
-    						<div class="input-group mb-3">
-    						  <div class="custom-file">
-    							<input type="file" class="custom-file-input" name="image" id="file">
-    							<label class="custom-file-label" for="file">Choose Foto</label>
-    						  </div>
-    						</div>
-    					</div>
+                    <div class="form-group">
+                        <label for="nama" class="col-form-label">Nama : </label>
+                        <input type="text" class="form-control" name="nama" id="nama">
                     </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Tambah Data</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="form-group">
+                        <label for="username" class="col-form-label">Username : </label>
+                        <input type="text" class="form-control" name="username" id="username">
                     </div>
+                    <div class="form-group">
+                        <label for="password" class="col-form-label">Password : </label>
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="file" class="col-form-label">Foto</label>
+                        <br /><span class="text-danger">Format: jpg/jpeg/png</span>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="image" id="file">
+                                <label class="custom-file-label" for="file">Choose Foto</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Tambah Data</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
                 <?php echo form_close(); ?>
             </div>
         </div>
@@ -126,10 +133,10 @@ $this->load->view('partials/head', $data);
 
     <!-- Edit Modal -->
     <?php foreach ($user as $value) : ?>
-    <div class="modal fade" id="modalEditProfil<?= $value->id_user?>">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <?php echo form_open_multipart('user/update'); ?>
+        <div class="modal fade" id="modalEditProfil<?= $value->id_user ?>">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <?php echo form_open_multipart('user/update'); ?>
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">Edit User</h4>
@@ -139,40 +146,40 @@ $this->load->view('partials/head', $data);
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="id_user" class="col-form-label">NIP : </label>
-                            <input type="text" class="form-control" name="id_user" id="id_user" value="<?= $value->id_user?>" >
+                            <input type="text" class="form-control" name="id_user" id="id_user" value="<?= $value->id_user ?>">
                         </div>
                         <div class="form-group">
                             <label for="nama" class="col-form-label">Nama : </label>
-                            <input type="text" class="form-control" name="nama" id="nama" value="<?= $value->nama?>">
+                            <input type="text" class="form-control" name="nama" id="nama" value="<?= $value->nama ?>">
                         </div>
                         <div class="form-group">
                             <label for="username" class="col-form-label">Username : </label>
-                            <input type="text" class="form-control" name="username" id="username" value="<?= $value->username?>">
+                            <input type="text" class="form-control" name="username" id="username" value="<?= $value->username ?>">
                         </div>
                         <div class="form-group">
                             <label for="password" class="col-form-label">Password : </label>
-                            <input type="password" class="form-control" name="password" id="password" value="<?= $value->password?>">
+                            <input type="password" class="form-control" name="password" id="password" value="<?= $value->password ?>">
                         </div>
                         <div class="form-group">
-    						<label for="file" class="col-form-label">Foto</label>
-    						<br/><span class="text-danger">Format: jpg/jpeg/png (5Mb)</span>    
-    						<div class="input-group mb-3">
-    						  <div class="custom-file">
-    							<input type="file" class="custom-file-input" name="image" id="file">
-    							<label class="custom-file-label" for="file">Choose Foto</label>
-    						  </div>
-    						</div>
-    					</div>
+                            <label for="file" class="col-form-label">Foto</label>
+                            <br /><span class="text-danger">Format: jpg/jpeg/png (5Mb)</span>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="image" id="file">
+                                    <label class="custom-file-label" for="file">Choose Foto</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Edit Data</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-                <?php echo form_close(); ?>
+                    <?php echo form_close(); ?>
+                </div>
             </div>
         </div>
-    </div>
     <?php endforeach; ?>
 
 

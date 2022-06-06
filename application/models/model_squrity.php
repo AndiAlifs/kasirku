@@ -10,5 +10,13 @@ class Model_squrity Extends CI_Model{
             $this->session->sess_destroy();
             redirect('login');
         }
+
+        $segmen = $this->uri->segment(1);
+
+        if ($this->session->role != 'owner' && ($segmen == 'transaksi' || $segmen == 'pegawai')){
+            $this->session->set_flashdata('msg',strtoupper("Hak akses tidak diberikan"));
+            $this->session->set_flashdata('kind',"warning");
+            redirect('dashboard');
+        }
     }
 }

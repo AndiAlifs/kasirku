@@ -23,6 +23,8 @@ class Login extends CI_Controller {
                 $this->session->set_userdata('id_user',$data[0]->id_user);
                 $this->session->set_userdata('role',$data[0]->role);
                 $this->session->set_flashdata('msg',strtoupper("anda login sebagai ".$data[0]->role."!"));
+                $this->session->set_flashdata('kind',"success");
+
                 redirect('/dashboard');
             } else {
                 $this->session->set_flashdata('info',"Password yang dimasukkan salah");

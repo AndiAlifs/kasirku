@@ -24,6 +24,10 @@ class User extends CI_Controller
     {
         $user_id = $this->input->post('id_user');
 
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$nama = $this->input->post('nama');
+
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 1000;
@@ -53,6 +57,15 @@ class User extends CI_Controller
         // save uploaded file name to database for current user
         $this->m_user->update_photo($user_id, $photo);
         
+        $data = array(
+            'id_user' => $user_id,
+			'username' => $username,
+			'password' => $password,
+			'nama' => $nama,
+		);
+
+        $this->m_user->update($data);
+
         $this->session->set_flashdata('msg',strtoupper("data berhasil diedit"));
 		$this->session->set_flashdata('kind',"warning");
 

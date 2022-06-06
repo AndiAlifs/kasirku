@@ -65,23 +65,23 @@ class User extends CI_Controller
 		$filename = $_FILES['image']['name'];
 		// var_dump($file);die;
 
-		$config['upload_path']		= './uploads/';
-		$config['allowed_types']	= 'jpg|png|gif|jpeg';
+
+        $config['upload_path']          = './uploads/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 1000;
+        $config['max_width']            = 2024;
+        $config['max_height']           = 1680;
 
 		$this->load->library('upload', $config);
-		// $this->upload->initialize($config); digunakan jika autoload upload aktif, cek modul autoload.php
+		$this->upload->initialize($config);
 
-		$file = $this->upload->data('image');
-		if (!$file) 
-		{
-			echo 'Gambar gagal di upload !';
-			echo $this->upload->display_errors();
-			// die;
-		} else{
-			$dataname['file'] = $file;
-			// var_dump($filename);die;
-		}
- 
+		 // "photo" is the name of input element in uploading form
+		 if (!$this->upload->do_upload('image')) {
+            // save uploading errors to show them on the page
+            $this->upload_errors = $this->upload->display_errors();
+            var_dump($this->upload_errors);
+            var_dump($config);
+        }
  
 		$data = array(
             'id_user' => $id_user,

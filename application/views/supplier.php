@@ -64,8 +64,8 @@
                                                     <td><?= $value->nohp_supplier ?></td>
                                                     <td><?= $value->alamat_supplier ?></td>
                                                     <td>
+                                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEditSupplier<?= $value->kode_supplier?>">Edit</button>
                                                         <a href="<?=site_url().'/supplier/hapus?kode='.$value->kode_supplier?>" class="btn btn-danger">Hapus</a>
-                                                        <a href="<?=site_url().'/supplier/edit?kode='.$value->kode_supplier?>" class="btn btn-warning mr-0">Edit</a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -115,13 +115,53 @@
                             <button type="submit" class="btn btn-success">Tambah Data</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
-
-
                     </form>
-
                 </div>
             </div>
         </div>
+
+        <!-- Edit Modal -->
+        <?php foreach ($suppliers as $value) : ?>
+        <div class="modal fade" id="modalEditSupplier<?= $value->kode_supplier?>">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <?php echo form_open_multipart('supplier/edit_proses'); ?>
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Supplier</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="kode_supplier" class="col-form-label">Kode Supplier : </label>
+                                <input type="text" class="form-control" name="kode_supplier" id="kode_supplier" value="<?= $value->kode_supplier ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_supplier" class="col-form-label">Nama Supplier : </label>
+                                <input type="text" class="form-control" name="nama_supplier" id="nama_supplier" value="<?= $value->nama_supplier ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="nohp_supplier" class="col-form-label">Nomor HP Supplier : </label>
+                                <input type="text" class="form-control" name="nohp_supplier" id="nohp_supplier" value="<?= $value->nohp_supplier ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="alamat_supplier" class="col-form-label">Alamat Supplier : </label>
+                                <input type="text" class="form-control" name="alamat_supplier" id="alamat_supplier" value="<?= $value->alamat_supplier ?>">
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Edit Data</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+
+
         <?php $this->load->view('partials/footer') ?>
 
     </body>

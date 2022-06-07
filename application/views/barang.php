@@ -64,8 +64,8 @@ $this->load->view('partials/head', $data);
                                                 <td>Rp. <?= $value->hargabeli ?></td>
                                                 <td>Rp. <?= $value->hargajual ?></td>
                                                 <td>
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEditBarang<?= $value->kodebarang?>">Edit</button>
                                                     <a href="<?= site_url() . '/barang/hapus?kode=' . $value->kodebarang ?>" class="btn btn-danger">Hapus</a>
-                                                    <a href="<?= site_url() . '/barang/edit?kode=' . $value->kodebarang ?>" class="btn btn-warning mr-0">Edit</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -119,15 +119,57 @@ $this->load->view('partials/head', $data);
                         <button type="submit" class="btn btn-success">Tambah Data</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-
-
                 </form>
-
             </div>
         </div>
     </div>
+
+    <!-- Edit Modal -->
+    <?php foreach ($barang as $value) : ?>
+    <div class="modal fade" id="modalEditBarang<?= $value->kodebarang?>">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <?php echo form_open_multipart('barang/edit_proses'); ?>
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Data Barang</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="kodebarang" class="col-form-label">Kode Barang : </label>
+                            <input type="text" class="form-control" name="kodebarang" id="kodebarang" value="<?= $value->kodebarang ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="namabarang" class="col-form-label">Nama Barang : </label>
+                            <input type="text" class="form-control" name="namabarang" id="namabarang" value="<?= $value->namabarang ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="hargabeli" class="col-form-label">Harga Beli : </label>
+                            <input type="text" class="form-control" name="hargabeli" id="hargabeli" value="<?= $value->hargabeli ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="hargajual" class="col-form-label">Harga Jual : </label>
+                            <input type="text" class="form-control" name="hargajual" id="hargajual" value="<?= $value->hargajual ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="stok" class="col-form-label">Stok : </label>
+                            <input type="number" class="form-control" name="stok" id="stok" value="<?= $value->stok ?>">
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Edit Data</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                <?php echo form_close(); ?>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+
     <?php $this->load->view('partials/footer') ?>
 
 </body>
 
-</html>

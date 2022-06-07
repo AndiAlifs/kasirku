@@ -69,7 +69,7 @@ class Barang extends CI_Controller
             'namabarang' => $barang->namabarang,
             'hargabeli' => $barang->hargabeli,
             'hargajual' => $barang->hargajual,
-            'stok' => $barang->stok + $jumlah_masuk,
+            'stok' => $barang->stok,
         ];
         $this->m_barang->update($dataBarang);
 

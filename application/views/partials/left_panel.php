@@ -34,7 +34,7 @@
                     <a href="<?=site_url('/transaksi')?>"> <i class="menu-icon fa fa-desktop"></i>Kasir</a>
                 </li>
 
-                <?php if($this->session->role == "owner"):?>
+                <?php if($this->session->role == "pemilik"):?>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-file-text"></i>Laporan</a>
                         <ul class="sub-menu children dropdown-menu">
